@@ -16,9 +16,13 @@ public class Service {
         this.addressRepository = addressRepository;
     }
 
-    public List<Address> getAddresses() {
-        return this.addressRepository.findAll();
+    public List<Address> findLast6() {
+        return this.addressRepository.findLast6();
     }
+
+//    public List<Address> getAllAddresses() {
+//        return this.addressRepository.findAll();
+//    }
 
     public void saveAddress(Address address) {
         this.addressRepository.save(address);
