@@ -22,6 +22,11 @@ public class ChristmasLetterController {
         return ResponseEntity.ok(christmasLetterService.readAllCard());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ChristmasLetter> getCardById(@PathVariable Long id) {
+        return ResponseEntity.ok(christmasLetterService.findCardById(id));
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<Void> updateStateReadCard (@PathVariable Long id){
         christmasLetterService.updateStateReadCard(id);
@@ -41,8 +46,6 @@ public class ChristmasLetterController {
                 new ChristmasLetter(9L, "Carta para mis Amigos", "Santa, por favor, dale un buen regalo a cada uno de mis amigos.", false, null),
                 new ChristmasLetter(10L, "Carta con Amor", "Querido Papá Noel, gracias por siempre estar ahí para todos los niños.", false, null)
         );
-
-        // Insertar las cartas en la base de datos
         christmasLetterService.saveAllCards(letters);
     }
 

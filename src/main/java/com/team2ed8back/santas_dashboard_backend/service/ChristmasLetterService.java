@@ -17,6 +17,10 @@ public class ChristmasLetterService {
         return christmastLetterRepository.findAll();
     }
 
+    public ChristmasLetter findCardById(Long id) {
+        return christmastLetterRepository.findById(id).orElseThrow(() -> new RuntimeException("ChristmasLetter not found"));
+    }
+
     public void updateStateReadCard(Long idCardRead){
         ChristmasLetter cardRead = christmastLetterRepository.findById(idCardRead).get();
         cardRead.generateDateReadCard();
