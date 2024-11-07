@@ -1,13 +1,17 @@
 package com.team2ed8back.santas_dashboard_backend;
 
+import com.team2ed8back.santas_dashboard_backend.controller.ChristmasLetterController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SantasDashboardBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SantasDashboardBackendApplication.class, args);
+		ApplicationContext context = SpringApplication.run(SantasDashboardBackendApplication.class, args);
+		ChristmasLetterController christmasLetterController = context.getBean(ChristmasLetterController.class);
+		christmasLetterController.insertChristmasLetters();
 	}
 
 }
