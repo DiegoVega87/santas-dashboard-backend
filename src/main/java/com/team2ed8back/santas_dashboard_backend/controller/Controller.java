@@ -27,9 +27,14 @@ public class Controller {
 //        );
 //    }
 
+//    @GetMapping
+//    public List<Address> getAll(){
+//        return service.getAddresses();
+//    }
+
     @GetMapping
-    public List<Address> getAll(){
-        return service.getAddresses();
+    public List<Address> getLast6(){
+        return service.getLast6Addresses();
     }
 
     @PostMapping
