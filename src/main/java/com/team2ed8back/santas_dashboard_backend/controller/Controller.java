@@ -18,6 +18,7 @@ public class Controller {
         this.service = service;
     }
 
+
 //    @GetMapping
 //    public List<Address> getAddresses() {
 //        return List.of(
@@ -26,14 +27,9 @@ public class Controller {
 //        );
 //    }
 
-//    @GetMapping
-//    public List<Address> getAddresses(){
-//        return service.getAllAddresses();
-//    }
-
     @GetMapping
-    public List<Address> getLast6(){
-        return service.findLast6();
+    public List<Address> getAll(){
+        return service.getAddresses();
     }
 
     @PostMapping
