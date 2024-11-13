@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "christmas_letter")
 public class ChristmasLetter {
 
