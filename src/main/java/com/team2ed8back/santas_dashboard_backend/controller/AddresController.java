@@ -1,7 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.controller;
 
 import com.team2ed8back.santas_dashboard_backend.entity.Address;
-import com.team2ed8back.santas_dashboard_backend.service.Service;
+import com.team2ed8back.santas_dashboard_backend.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,13 +9,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/addresses")
-public class Controller {
+public class AddresController {
 
     @Autowired
-    private final Service service;
+    private final AddressService addressService;
 
-    public Controller(Service service) {
-        this.service = service;
+    public AddresController(AddressService addressService) {
+        this.addressService = addressService;
     }
 
 
@@ -29,17 +29,17 @@ public class Controller {
 
 //    @GetMapping
 //    public List<Address> getAll(){
-//        return service.getAddresses();
+//        return addressService.getAddresses();
 //    }
 
     @GetMapping
     public List<Address> getLast6(){
-        return service.getLast5Addresses();
+        return addressService.getLast5Addresses();
     }
 
     @PostMapping
     public void save(@RequestBody Address address){
-        service.saveAddress(address);
+        addressService.saveAddress(address);
     }
 
 }
