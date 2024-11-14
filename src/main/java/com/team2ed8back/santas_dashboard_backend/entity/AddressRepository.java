@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
-    @Query("SELECT a FROM Address AS a ORDER BY a.id DESC LIMIT 6")
-    public List<Address> findLast6();
+    @Query("SELECT a FROM Address AS a ORDER BY a.id DESC LIMIT 5")
+    public List<Address> findLast5();
 
 }

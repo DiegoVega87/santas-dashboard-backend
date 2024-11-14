@@ -34,7 +34,7 @@ public class Controller {
 
     @GetMapping
     public List<Address> getLast6(){
-        return service.getLast6Addresses();
+        return service.getLast5Addresses();
     }
 
     @PostMapping
