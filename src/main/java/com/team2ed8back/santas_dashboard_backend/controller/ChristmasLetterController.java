@@ -1,9 +1,8 @@
 package com.team2ed8back.santas_dashboard_backend.controller;
 
-import com.team2ed8back.santas_dashboard_backend.entity.ChristmasLetter;
+import com.team2ed8back.santas_dashboard_backend.entity.christmasLetter.ChristmasLetter;
 import com.team2ed8back.santas_dashboard_backend.service.ChristmasLetterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

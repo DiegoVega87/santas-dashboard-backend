@@ -1,4 +1,4 @@
-package com.team2ed8back.santas_dashboard_backend.entity;
+package com.team2ed8back.santas_dashboard_backend.entity.address;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

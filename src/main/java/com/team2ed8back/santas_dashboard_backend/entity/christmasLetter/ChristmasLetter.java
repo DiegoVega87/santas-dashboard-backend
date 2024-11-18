@@ -1,8 +1,7 @@
-package com.team2ed8back.santas_dashboard_backend.entity;
+package com.team2ed8back.santas_dashboard_backend.entity.christmasLetter;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

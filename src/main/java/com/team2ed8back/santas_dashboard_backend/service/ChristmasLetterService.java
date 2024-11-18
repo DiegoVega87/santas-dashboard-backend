@@ -1,7 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.service;
 
-import com.team2ed8back.santas_dashboard_backend.entity.ChristmasLetter;
-import com.team2ed8back.santas_dashboard_backend.entity.ChristmastLetterRepository;
+import com.team2ed8back.santas_dashboard_backend.entity.christmasLetter.ChristmasLetter;
+import com.team2ed8back.santas_dashboard_backend.entity.christmasLetter.ChristmastLetterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

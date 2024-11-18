@@ -1,7 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.service;
 
-import com.team2ed8back.santas_dashboard_backend.entity.Address;
-import com.team2ed8back.santas_dashboard_backend.entity.AddressRepository;
+import com.team2ed8back.santas_dashboard_backend.entity.address.Address;
+import com.team2ed8back.santas_dashboard_backend.entity.address.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
