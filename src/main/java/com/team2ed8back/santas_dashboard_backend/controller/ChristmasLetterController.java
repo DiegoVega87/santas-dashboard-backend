@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin(origins = "*") // This means that the controller will accept requests from any origin
 @RestController
 @RequestMapping("api/v1/christmas-cards")
 @RequiredArgsConstructor

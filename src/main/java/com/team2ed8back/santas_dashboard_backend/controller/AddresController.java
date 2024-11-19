@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*") // This means that the controller will accept requests from any origin
 @RestController
 @RequestMapping(path = "api/v1/addresses")
 public class AddresController {
@@ -17,20 +18,6 @@ public class AddresController {
     public AddresController(AddressService addressService) {
         this.addressService = addressService;
     }
-
-
-//    @GetMapping
-//    public List<Address> getAddresses() {
-//        return List.of(
-//                new Address(1L, "Regocijos", 14, "Almeria", "Andalucia", "04005", "Spain"),
-//                new Address(2L, "West Dewey Ave", 154, "Wharton", "NJ", "07885", "USA")
-//        );
-//    }
-
-//    @GetMapping
-//    public List<Address> getAll(){
-//        return addressService.getAddresses();
-//    }
 
     @GetMapping
     public List<Address> getLast6(){
