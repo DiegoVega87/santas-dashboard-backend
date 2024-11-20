@@ -20,13 +20,21 @@ Bienvenido al proyecto **Santas**, creado durante la devathon organizada por **P
 - Spring Boot
 - MySQL (u otra base de datos compatible)
 - Maven
+- Docker
 
 ## Instalación
-1. **Clonar el repositorio:**
+1. **Clonar el repositorio desde IDE o Bash:**
    ```bash
-   git clone https://github.com/tu-usuario/fabrica-navidad.git
-   cd fabrica-navidad
-2. **Entra a los archivos descargados en la carpeta target:**
-
-- Navega a la carpeta target
-- Ejecutar el archivo JAR desde la terminañ : java -jar fabrica-navidad-0.0.1-SNAPSHOT.jar
+   git clone https://github.com/DiegoVega87/santas-dashboard-backend.git
+   cd santas-dashboard-backend
+2. **Ejecutar la aplicación:**
+   ```bash
+   docker compose build
+   docker compose up
+3. **Accede a la aplicación en tu navegador:**
+   ```bash
+   http://localhost:8080
+3. **Para deterner la ejecucion de la aplicacion ejecuta en tu IDE o Bash el comando:**
+   ```bash
+   Ctrl + C
+```
