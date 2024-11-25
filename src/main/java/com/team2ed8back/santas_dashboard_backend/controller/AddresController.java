@@ -20,7 +20,7 @@ public class AddresController {
     }
 
     @GetMapping
-    public List<Address> getLast6(){
+    public List<Address> getLast5(){
         return addressService.getLast5Addresses();
     }
 
