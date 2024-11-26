@@ -21,6 +21,10 @@ public class ChristmasLetterService {
         return christmastLetterRepository.findById(id).orElseThrow(() -> new RuntimeException("ChristmasLetter not found"));
     }
 
+    public boolean isEmptyCards (){
+        return christmastLetterRepository.findAll().isEmpty();
+    }
+
     public void updateStateReadCard(Long idCardRead){
         ChristmasLetter cardRead = christmastLetterRepository.findById(idCardRead).get();
         cardRead.generateDateReadCard();
