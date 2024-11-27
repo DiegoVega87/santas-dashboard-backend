@@ -1,9 +1,6 @@
-package com.team2ed8back.santas_dashboard_backend.entity;
+package com.team2ed8back.santas_dashboard_backend.entity.calorie;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Table(name = "calorie_counter")
 public class CalorieCounter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

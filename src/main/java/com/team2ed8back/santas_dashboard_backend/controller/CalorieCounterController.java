@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/counter-calories")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class CalorieCounterController {
 
     private final CalorieCounterService calorieCounterService;

@@ -1,7 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.service.calorie;
 
 
-import com.team2ed8back.santas_dashboard_backend.entity.CalorieCounter;
+import com.team2ed8back.santas_dashboard_backend.entity.calorie.CalorieCounter;
 import com.team2ed8back.santas_dashboard_backend.entity.calorie.CalorieCounterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
