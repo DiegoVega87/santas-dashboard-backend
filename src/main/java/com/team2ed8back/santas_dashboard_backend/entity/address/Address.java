@@ -19,9 +19,9 @@ public class Address {
     private String name="";
     @Column(nullable = false)
     private String address;
-    @Column( nullable = false)
-    private long lat;
-    @Column(nullable = false)
-    private long lng;
+    @Column(name = "lat", nullable = false)
+    private long latitude;
+    @Column(name = "lng", nullable = false)
+    private long longitude;
 
 }
