@@ -25,8 +25,8 @@ public class AddresController {
     }
 
     @PostMapping
-    public void save(@RequestBody Address address){
-        addressService.saveAddress(address);
+    public Address save(@RequestBody Address address){
+        return addressService.saveAddress(address);
     }
 
 }

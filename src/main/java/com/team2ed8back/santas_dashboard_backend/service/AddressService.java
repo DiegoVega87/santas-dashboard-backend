@@ -20,8 +20,8 @@ public class AddressService {
         return this.addressRepository.findLast5();
     }
 
-    public void saveAddress(Address address) {
-        this.addressRepository.save(address);
+    public Address saveAddress(Address address) {
+        return this.addressRepository.save(address);
     }
 
 
