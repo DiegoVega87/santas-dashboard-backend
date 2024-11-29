@@ -2,10 +2,9 @@ package com.team2ed8back.santas_dashboard_backend.entity.address;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.math.BigDecimal;
 
 @CrossOrigin("*")
 @Entity
@@ -19,14 +18,14 @@ public class Address {
     @Column(nullable = false)
     private String address;
     @Column(name = "lat", nullable = false)
-    private long latitude;
+    private BigDecimal latitude;
     @Column(name = "lng", nullable = false)
-    private long longitude;
+    private BigDecimal longitude;
 
     public Address() {
     }
 
-    public Address(long id, String name, String address, long latitude, long longitude) {
+    public Address(long id, String name, String address, BigDecimal latitude, BigDecimal longitude) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -34,7 +33,7 @@ public class Address {
         this.longitude = longitude;
     }
 
-    public Address(String name, String address, long latitude, long longitude) {
+    public Address(String name, String address, BigDecimal latitude, BigDecimal longitude) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -65,19 +64,19 @@ public class Address {
         this.address = address;
     }
 
-    public long getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
 }

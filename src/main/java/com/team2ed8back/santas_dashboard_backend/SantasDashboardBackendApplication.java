@@ -17,22 +17,6 @@ public class SantasDashboardBackendApplication {
 		ApplicationContext context = SpringApplication.run(SantasDashboardBackendApplication.class, args);
 		ChristmasLetterController christmasLetterController = context.getBean(ChristmasLetterController.class);
 		christmasLetterController.insertChristmasLetters();
-		AddresController addresController = context.getBean(AddresController.class);
-
 	}
-
-//	@Configuration
-//	public static class Myconfiguration{
-//		@Bean
-//		public WebMvcConfigurer corsConfigurer(){
-//			return new WebMvcConfigurer() {
-//				@Override
-//				public void addCorsMappings(CorsRegistry registry) {
-//					registry.addMapping("/**")
-//							.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
-//				}
-//			};
-//		}
-//	}
 
 }
