@@ -31,7 +31,7 @@ public class SantasDashboardBackendApplication {
 				new Reindeer("Cupid", "Strong"),
 				new Reindeer("Donner", "Strong"),
 				new Reindeer("Blitzen", "Strong"),
-				new Reindeer("Rudolph", "Bright")
+				new Reindeer("Rudolph", "Leader")
 		));
 	}
 }

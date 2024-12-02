@@ -16,6 +16,12 @@ public class ReindeerAlignment {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
+    //------------> For Rudolph in case weather = snow. <----------
+    @ManyToOne
+    @JoinColumn(name = "lead", referencedColumnName = "id")
+    private long lead;
+    //------------> For Rudolph in case weather = snow. <----------
+
     @ManyToOne
     @JoinColumn(name = "front1", referencedColumnName = "id")
     private long front1;
@@ -23,10 +29,6 @@ public class ReindeerAlignment {
     @ManyToOne
     @JoinColumn(name = "front2", referencedColumnName = "id")
     private long front2;
-
-    @ManyToOne
-    @JoinColumn(name = "front3", referencedColumnName = "id")
-    private long front3;
 
     @ManyToOne
     @JoinColumn(name = "middle1", referencedColumnName = "id")
