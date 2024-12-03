@@ -1,14 +1,14 @@
 package com.team2ed8back.santas_dashboard_backend;
 
-import com.team2ed8back.santas_dashboard_backend.controller.AddresController;
 import com.team2ed8back.santas_dashboard_backend.controller.ChristmasLetterController;
+import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
+import com.team2ed8back.santas_dashboard_backend.service.reindeer.ReindeerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
+
 
 @SpringBootApplication
 public class SantasDashboardBackendApplication {
@@ -17,22 +17,21 @@ public class SantasDashboardBackendApplication {
 		ApplicationContext context = SpringApplication.run(SantasDashboardBackendApplication.class, args);
 		ChristmasLetterController christmasLetterController = context.getBean(ChristmasLetterController.class);
 		christmasLetterController.insertChristmasLetters();
-		AddresController addresController = context.getBean(AddresController.class);
-
+		ReindeerService reindeerService = context.getBean(ReindeerService.class);
+		initializeReindeers(reindeerService);
 	}
 
-//	@Configuration
-//	public static class Myconfiguration{
-//		@Bean
-//		public WebMvcConfigurer corsConfigurer(){
-//			return new WebMvcConfigurer() {
-//				@Override
-//				public void addCorsMappings(CorsRegistry registry) {
-//					registry.addMapping("/**")
-//							.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
-//				}
-//			};
-//		}
-//	}
-
+	public static void initializeReindeers(ReindeerService reindeerService) {
+		reindeerService.saveAllReindeers(List.of(
+				new Reindeer("Dasher", "Fast"),
+				new Reindeer("Dancer", "Fast"),
+				new Reindeer("Prancer", "Strong"),
+				new Reindeer("Vixen", "Strong"),
+				new Reindeer("Comet", "Fast"),
+				new Reindeer("Cupid", "Strong"),
+				new Reindeer("Donner", "Strong"),
+				new Reindeer("Blitzen", "Strong"),
+				new Reindeer("Rudolph", "Leader")
+		));
+	}
 }
