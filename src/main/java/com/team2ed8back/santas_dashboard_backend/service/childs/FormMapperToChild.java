@@ -21,8 +21,6 @@ public class FormMapperToChild {
         if(formUpdateBehavior.teamWork() < 0 || formUpdateBehavior.teamWork() > 10){
             return Either.left("Value, team work is invalid, Valid values are integers between 0 and 10");
         }
-        childToUpdate.setFemale(formUpdateBehavior.isFemale());
-        childToUpdate.setLinkImgProfile(ChildService.generateLinkImgProfile(generateLink(formUpdateBehavior.isFemale(), childToUpdate.getAge())));
         childToUpdate.setKindnessLevel(formUpdateBehavior.kindness());
         childToUpdate.setRespectfulnessLevel(formUpdateBehavior.respectful());
         childToUpdate.setPatienceLevel(formUpdateBehavior.patience());
