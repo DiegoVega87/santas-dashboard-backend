@@ -5,11 +5,13 @@ import com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment.Reinde
 import com.team2ed8back.santas_dashboard_backend.service.reindeer.ReindeerService;
 import com.team2ed8back.santas_dashboard_backend.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,11 +29,15 @@ public class WeatherController {
 
     @GetMapping("/north-pole")
     public String getWeatherCondition() {
-        String weatherResponse = weatherService.getWeatherAtNorthPole();
-        JSONObject weatherJson = new JSONObject(weatherResponse);
-        String weatherCondition = weatherJson.getJSONArray("weather")
-                .getJSONObject(0).getString("main");
-        return "Weather: " + weatherCondition;
+        try {
+            String weatherResponse = weatherService.getWeatherAtNorthPole();
+            JSONObject weatherJson = new JSONObject(weatherResponse);
+            String weatherCondition = weatherJson.getJSONArray("weather")
+                    .getJSONObject(0).getString("main");
+            return weatherCondition;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to fetch weather condition", e);
+        }
     }
 
     @GetMapping("/reindeer-alignment")
