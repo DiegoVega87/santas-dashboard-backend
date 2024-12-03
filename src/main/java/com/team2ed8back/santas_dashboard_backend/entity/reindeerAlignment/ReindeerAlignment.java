@@ -1,8 +1,10 @@
-package com.team2ed8back.santas_dashboard_backend.reindeerAlignment;
+package com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "reindeer_alignment", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"front1", "front2", "front3",

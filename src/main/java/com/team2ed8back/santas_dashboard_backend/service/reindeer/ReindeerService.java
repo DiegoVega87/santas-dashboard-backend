@@ -1,4 +1,4 @@
-package com.team2ed8back.santas_dashboard_backend.service;
+package com.team2ed8back.santas_dashboard_backend.service.reindeer;
 
 import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeer.ReindeerRepository;
@@ -17,5 +17,9 @@ public class ReindeerService {
 
     public void saveAllReindeers(List<Reindeer> reindeer) {
         reindeerRepository.saveAll(reindeer);
+    }
+
+    public List<Reindeer> findAllReindeers() {
+        return reindeerRepository.findAll();
     }
 }
