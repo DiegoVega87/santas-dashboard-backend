@@ -1,6 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend;
 
 import com.team2ed8back.santas_dashboard_backend.controller.ChristmasLetterController;
+import com.team2ed8back.santas_dashboard_backend.service.childs.ChildService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +13,7 @@ public class SantasDashboardBackendApplication {
 		ApplicationContext context = SpringApplication.run(SantasDashboardBackendApplication.class, args);
 		ChristmasLetterController christmasLetterController = context.getBean(ChristmasLetterController.class);
 		christmasLetterController.insertChristmasLetters();
+		context.getBean(ChildService.class).saveChildList();
 	}
 
 }
