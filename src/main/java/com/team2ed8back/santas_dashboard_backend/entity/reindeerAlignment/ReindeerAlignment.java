@@ -1,5 +1,6 @@
 package com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment;
 
+import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -21,40 +22,40 @@ public class ReindeerAlignment {
     //------------> For Rudolph in case weather = snow. <----------
     @ManyToOne
     @JoinColumn(name = "lead", referencedColumnName = "id")
-    private long lead;
+    private Reindeer lead;
     //------------> For Rudolph in case weather = snow. <----------
 
     @ManyToOne
     @JoinColumn(name = "front1", referencedColumnName = "id")
-    private long front1;
+    private Reindeer front1;
 
     @ManyToOne
     @JoinColumn(name = "front2", referencedColumnName = "id")
-    private long front2;
+    private Reindeer front2;
 
     @ManyToOne
     @JoinColumn(name = "middle1", referencedColumnName = "id")
-    private long middle1;
+    private Reindeer middle1;
 
     @ManyToOne
     @JoinColumn(name = "middle2", referencedColumnName = "id")
-    private long middle2;
+    private Reindeer middle2;
 
     @ManyToOne
     @JoinColumn(name = "middle3", referencedColumnName = "id")
-    private long middle3;
+    private Reindeer middle3;
 
     @ManyToOne
     @JoinColumn(name = " back1", referencedColumnName = "id")
-    private long back1;
+    private Reindeer back1;
 
     @ManyToOne
     @JoinColumn(name = "back2", referencedColumnName = "id")
-    private long back2;
+    private Reindeer back2;
 
     @ManyToOne
     @JoinColumn(name = "back3", referencedColumnName = "id")
-    private long back3;
+    private Reindeer back3;
 
     private String weather;
 }
