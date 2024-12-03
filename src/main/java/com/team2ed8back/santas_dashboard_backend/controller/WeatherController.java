@@ -72,6 +72,8 @@ public class WeatherController {
         middleReindeers = reindeers.stream().filter(r -> !frontReindeers.contains(r) && !backReindeers.contains(r) && !r.equals(lead)).collect(Collectors.toList());
 
         ReindeerAlignment alignment = new ReindeerAlignment();
+        alignment.setId(1L);
+        alignment.setName("Snowy Alignment");
         alignment.setLead(lead);
         alignment.setFront1(frontReindeers.get(0));
         alignment.setFront2(frontReindeers.get(1));

@@ -16,6 +16,7 @@ public class ReindeerAlignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotBlank(message = "Name is mandatory")
     private String name;
 
