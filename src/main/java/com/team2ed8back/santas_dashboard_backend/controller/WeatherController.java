@@ -52,6 +52,8 @@ public class WeatherController {
         List<Reindeer> middleReindeers;
         List<Reindeer> backReindeers;
 
+        ReindeerAlignment alignment = new ReindeerAlignment();
+
         if ("Snow".equalsIgnoreCase(weatherCondition)) {
             lead = reindeers.stream()
                     .filter(r -> "Rudolph".equalsIgnoreCase(r.getName()))
@@ -63,6 +65,7 @@ public class WeatherController {
             backReindeers = reindeers.stream().
                     filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
                     .collect(Collectors.toList());
+            alignment.setName("Snowy Alignment");
         } else {
             lead = reindeers.stream()
                     .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
@@ -73,13 +76,13 @@ public class WeatherController {
             backReindeers = reindeers.stream()
                     .filter(r -> "Strongest".equalsIgnoreCase(r.getType()) || "Strong".equalsIgnoreCase(r.getType()))
                     .collect(Collectors.toList());
+            alignment.setName("Default Alignment");
         }
 
         middleReindeers = reindeers.stream().filter(r -> !frontReindeers.contains(r) && !backReindeers.contains(r) && !r.equals(lead)).collect(Collectors.toList());
 
-        ReindeerAlignment alignment = new ReindeerAlignment();
+
         alignment.setId(1L);
-        alignment.setName("Snowy Alignment");
         alignment.setLead(lead);
         alignment.setFront1(frontReindeers.get(0));
         alignment.setFront2(frontReindeers.get(1));
