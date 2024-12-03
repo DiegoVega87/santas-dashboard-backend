@@ -7,11 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "reindeer_alignment", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"front1", "front2", "front3",
-                "middle1", "middle2", "middle3",
-                "back1", "back2", "back3"})
-})
+@Table(name = "reindeer_alignment")
 public class ReindeerAlignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
