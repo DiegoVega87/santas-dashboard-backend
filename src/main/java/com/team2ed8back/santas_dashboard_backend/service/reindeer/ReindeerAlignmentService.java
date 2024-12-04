@@ -13,33 +13,25 @@ public class ReindeerAlignmentService {
     @Autowired
     private ReindeerAlignmentRepository reindeerAlignmentRepository;
 
-    public List<ReindeerAlignment> findAllAlignments() {
+    public List<ReindeerAlignment> getAllAlignments() {
         return reindeerAlignmentRepository.findAll();
     }
 
-    public ReindeerAlignment saveAlignment(ReindeerAlignment alignment) {
+    public ReindeerAlignment getAlignmentById(Long id) {
+        return reindeerAlignmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Alignment not found"));
+    }
+
+    public ReindeerAlignment createAlignment(ReindeerAlignment alignment) {
         return reindeerAlignmentRepository.save(alignment);
     }
 
-    public ReindeerAlignment updateAlignment(Long id, ReindeerAlignment alignmentDetails ){
-
-        ReindeerAlignment alignment = reindeerAlignmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Alignment not found"));
-        alignment.setLead(alignmentDetails.getLead());
-        alignment.setFront1(alignmentDetails.getFront1());
-        alignment.setFront2(alignmentDetails.getFront2());
-        alignment.setMiddle1(alignmentDetails.getMiddle1());
-        alignment.setMiddle2(alignmentDetails.getMiddle2());
-        alignment.setBack1(alignmentDetails.getBack1());
-        alignment.setBack2(alignmentDetails.getBack2());
-        alignment.setBack3(alignmentDetails.getBack3());
-        return reindeerAlignmentRepository.save(alignment);
+    public ReindeerAlignment updateAlignment(Long id, ReindeerAlignment alignment) {
+        ReindeerAlignment existingAlignment = getAlignmentById(id);
+        // Update fields of existingAlignment with values from alignment
+        return reindeerAlignmentRepository.save(existingAlignment);
     }
 
     public void deleteAlignment(Long id) {
-        if(!reindeerAlignmentRepository.existsById(id)){
-            throw new RuntimeException("Alignment not found");
-        }
         reindeerAlignmentRepository.deleteById(id);
     }
 }
