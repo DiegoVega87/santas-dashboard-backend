@@ -16,12 +16,12 @@ public class ReindeerAlignmentController {
 
     @GetMapping
     public List<ReindeerAlignment> getAllAlignments() {
-        return reindeerAlignmentService.findAllAlignments();
+        return reindeerAlignmentService.getAllAlignments();
     }
 
     @PostMapping
     public ReindeerAlignment createAlignment(@RequestBody ReindeerAlignment alignment) {
-        return reindeerAlignmentService.saveAlignment(alignment);
+        return reindeerAlignmentService.createAlignment(alignment);
     }
 
     @PutMapping("/{id}")
