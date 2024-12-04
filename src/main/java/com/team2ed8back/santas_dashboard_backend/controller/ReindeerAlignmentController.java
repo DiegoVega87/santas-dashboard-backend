@@ -35,5 +35,9 @@ public class ReindeerAlignmentController {
         reindeerAlignmentService.deleteAlignment(id);
     }
 
+    @GetMapping("/weather-alignment")
+    public ReindeerAlignment getAlignmentByWeather() {
+        return reindeerAlignmentService.getAlignmentByWeather();
+    }
 
 }
