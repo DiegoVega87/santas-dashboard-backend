@@ -4,6 +4,7 @@ public class Weather {
 
     private String condition;
 
+
     // Getters and Setters
     public String getCondition() {
         return condition;

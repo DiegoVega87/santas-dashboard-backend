@@ -56,6 +56,4 @@ public class ReindeerAlignment {
     @ManyToOne
     @JoinColumn(name = "back3", referencedColumnName = "id")
     private Reindeer back3;
-
-    private String weather;
 }
