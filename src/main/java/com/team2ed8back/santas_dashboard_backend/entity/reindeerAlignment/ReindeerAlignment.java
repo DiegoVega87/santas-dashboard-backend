@@ -4,6 +4,7 @@ import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Data
 @Entity
