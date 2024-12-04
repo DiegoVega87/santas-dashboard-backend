@@ -1,10 +1,15 @@
 package com.team2ed8back.santas_dashboard_backend.service.reindeer;
 
+import com.team2ed8back.santas_dashboard_backend.entity.Weather;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment.ReindeerAlignment;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment.ReindeerAlignmentRepository;
+import com.team2ed8back.santas_dashboard_backend.service.WeatherService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +22,10 @@ public class ReindeerAlignmentService {
 
     @Autowired
     ReindeerService reindeerService;
+
+    @Autowired
+    WeatherService weatherService;
+
 
     public List<ReindeerAlignment> getAllAlignments() {
         return reindeerAlignmentRepository.findAll();
@@ -38,6 +47,34 @@ public class ReindeerAlignmentService {
 
     public void deleteAlignment(Long id) {
         reindeerAlignmentRepository.deleteById(id);
+    }
+
+    public Weather getWeatherCondition() {
+        try {
+            String weatherResponse = weatherService.getWeatherAtNorthPole();
+            JSONObject weatherJson = new JSONObject(weatherResponse);
+            String weatherCondition = weatherJson.getJSONArray("data")
+                    .getJSONObject(0).getJSONObject("weather").getString("description");
+            double temperature = weatherJson.getJSONArray("data")
+                    .getJSONObject(0).getDouble("temp");
+
+            System.out.println(weatherJson.toString(2)); // Pretty print the J
+            Weather weather = new Weather();
+            weather.setCondition(weatherCondition);
+
+            return weather;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to fetch weather condition", e);
+        }
+    }
+
+    public ReindeerAlignment getAlignmentByWeather() {
+        Weather weatherCondition = getWeatherCondition();
+        if (weatherCondition.getCondition().contains("snow")) {
+            return reindeerAlignmentRepository.findByName("Snowy alignment");
+        } else {
+            return reindeerAlignmentRepository.findByName("Default alignment");
+        }
     }
 
     public void insertDefaultAlignments() {
@@ -81,7 +118,7 @@ public class ReindeerAlignmentService {
                 .orElseThrow(() -> new RuntimeException("Fastest reindeer not found"));
         defaultAlignment.setLead(fastest);
 
-        defaultAlignment.setFront1(fastReindeers.get(0));
+        defaultAlignment.setFront1(rudolph);
         defaultAlignment.setFront2(fastReindeers.get(1));
         defaultAlignment.setMiddle1(fastReindeers.get(2));
         defaultAlignment.setMiddle2(strongReindeers.get(0));
