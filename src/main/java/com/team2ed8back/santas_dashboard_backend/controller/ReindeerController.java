@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @CrossOrigin("*")
-@RequestMapping("/api/v1/reindeers")
+@RequestMapping("api/v1/reindeers")
 public class ReindeerController {
 
     @Autowired
