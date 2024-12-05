@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Data
 @Entity
-@Table(name = "reindeer_alignment")
+@Table(name = "reindeer_alignment", uniqueConstraints = @UniqueConstraint(columnNames = {"name","leader", "front1", "front2",
+        "middle1", "middle2", "middle3", "back1", "back2", "back3"}))
 public class ReindeerAlignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
