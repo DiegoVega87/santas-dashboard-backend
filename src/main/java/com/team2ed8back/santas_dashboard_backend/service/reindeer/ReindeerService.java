@@ -22,4 +22,24 @@ public class ReindeerService {
     public List<Reindeer> findAllReindeers() {
         return reindeerRepository.findAll();
     }
+
+    public boolean listReindeerIsEmpty() {
+        return reindeerRepository.findAll().isEmpty();
+    }
+
+    public void saveReindeerList(){
+        if(listReindeerIsEmpty()){
+            saveAllReindeers(List.of(
+                    new Reindeer("Dasher", "Fast"),
+                    new Reindeer("Dancer", "Fast"),
+                    new Reindeer("Comet", "Fast"),
+                    new Reindeer("Prancer", "Strong"),
+                    new Reindeer("Vixen", "Strong"),
+                    new Reindeer("Cupid", "Strong"),
+                    new Reindeer("Donner", "Strong"),
+                    new Reindeer("Blitzen", "Strong"),
+                    new Reindeer("Rudolph", "Leader")
+            ));
+        }
+    }
 }
