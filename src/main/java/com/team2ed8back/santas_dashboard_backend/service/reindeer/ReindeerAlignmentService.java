@@ -1,5 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.service.reindeer;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team2ed8back.santas_dashboard_backend.entity.Weather;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment.ReindeerAlignment;
@@ -11,7 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +30,7 @@ public class ReindeerAlignmentService {
 
     @Autowired
     WeatherService weatherService;
+
 
 
     public List<ReindeerAlignment> getAllAlignments() {
@@ -53,15 +59,30 @@ public class ReindeerAlignmentService {
         try {
             String weatherResponse = weatherService.getWeatherAtNorthPole();
             JSONObject weatherJson = new JSONObject(weatherResponse);
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode rootNode = objectMapper.readTree(weatherJson.toString());
+
+            // Navegar a "data" (es un array)
+            String temp = "";
+            JsonNode dataArray = rootNode.get("data");
+            if (dataArray != null && dataArray.isArray()) {
+                JsonNode firstItem = dataArray.get(0); //
+                if (firstItem != null) {
+                    JsonNode tempNode = firstItem.get("temp"); // Obtener el valor de "temp"
+                    if (tempNode != null) {
+                        temp = tempNode.asInt() + "°C";
+                    } else {
+                        System.out.println("No se encontró 'temp' en el objeto.");
+                    }
+                }
+            }
             String weatherCondition = weatherJson.getJSONArray("data")
                     .getJSONObject(0).getJSONObject("weather").getString("description");
-            double temperature = weatherJson.getJSONArray("data")
-                    .getJSONObject(0).getDouble("temp");
 
             System.out.println(weatherJson.toString(2)); // Pretty print the J
             Weather weather = new Weather();
             weather.setCondition(weatherCondition);
-
+            weather.setTemperature(temp);
             return weather;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to fetch weather condition", e);
@@ -87,12 +108,13 @@ public class ReindeerAlignmentService {
         Reindeer rudolph = reindeers.stream()
                 .filter(r -> "Rudolph".equalsIgnoreCase(r.getName()))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Rudolph not found"));
-        snowyAlignment.setLead(rudolph);
+                .orElseThrow(() -> new RuntimeException("Rudolph not found ACA ESTA EL ERROR"));
+        snowyAlignment.setLeader(rudolph);
 
         List<Reindeer> strongReindeers = reindeers.stream()
                 .filter(r -> "Strongest".equalsIgnoreCase(r.getType()) || "Strong".equalsIgnoreCase(r.getType()))
                 .collect(Collectors.toList());
+
         List<Reindeer> fastReindeers = reindeers.stream()
                 .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
                 .collect(Collectors.toList());
@@ -116,7 +138,7 @@ public class ReindeerAlignmentService {
                 .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Fastest reindeer not found"));
-        defaultAlignment.setLead(fastest);
+        defaultAlignment.setLeader(fastest);
 
         defaultAlignment.setFront1(rudolph);
         defaultAlignment.setFront2(fastReindeers.get(1));

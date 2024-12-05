@@ -19,8 +19,8 @@ public class ReindeerAlignment {
 
     //------------> For Rudolph in case weather = snow. <----------
     @ManyToOne
-    @JoinColumn(name = "lead", referencedColumnName = "id")
-    private Reindeer lead;
+    @JoinColumn(name = "leader", referencedColumnName = "id")
+    private Reindeer leader;
     //------------> For Rudolph in case weather = snow. <----------
 
     @ManyToOne
@@ -44,7 +44,7 @@ public class ReindeerAlignment {
     private Reindeer middle3;
 
     @ManyToOne
-    @JoinColumn(name = " back1", referencedColumnName = "id")
+    @JoinColumn(name = "back1", referencedColumnName = "id")
     private Reindeer back1;
 
     @ManyToOne

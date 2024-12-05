@@ -5,7 +5,6 @@ import lombok.Builder;
 @Builder
 public record FormUpdateBehavior(
         Integer idChild,
-        boolean isFemale,
         int kindness,
         int respectful,
         int patience,
