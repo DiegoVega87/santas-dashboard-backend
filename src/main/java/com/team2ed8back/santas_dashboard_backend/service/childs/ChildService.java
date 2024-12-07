@@ -75,11 +75,11 @@ public class ChildService {
     }
 
     public void saveChildList() {
-        Child child1 = Child.builder().name("Juan Camilo").age(12).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
+        Child child1 = Child.builder().name("Juan Camilo").age(1).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
                 .kindnessLevel(1).respectfulnessLevel(4).patienceLevel(3)
                 .effortLevel(4).teamworkLevel(1).build();
 
-        Child child2 = Child.builder().name("Ana Teres").age(10).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
+        Child child2 = Child.builder().name("Ana Teres").age(1).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(4).patienceLevel(3)
                 .effortLevel(2).teamworkLevel(4).build();
 
@@ -115,27 +115,27 @@ public class ChildService {
                 .kindnessLevel(1).respectfulnessLevel(4).patienceLevel(3)
                 .effortLevel(1).teamworkLevel(4).build();
 
-        Child child11 = Child.builder().name("Marta Angel").age(10).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
+        Child child11 = Child.builder().name("Marta Angel").age(1).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(4).patienceLevel(2)
                 .effortLevel(4).teamworkLevel(1).build();
 
-        Child child12 = Child.builder().name("Carmen Josefa").age(8).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
+        Child child12 = Child.builder().name("Carmen Josefa").age(4).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(3).patienceLevel(3)
                 .effortLevel(3).teamworkLevel(4).build();
 
-        Child child13 = Child.builder().name("Fernando Ruiz").age(7).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
+        Child child13 = Child.builder().name("Fernando Ruiz").age(2).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
                 .kindnessLevel(4).respectfulnessLevel(1).patienceLevel(4)
                 .effortLevel(1).teamworkLevel(1).build();
 
-        Child child14 = Child.builder().name("Valeria Romero").age(6).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
+        Child child14 = Child.builder().name("Valeria Romero").age(1).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(2).respectfulnessLevel(2).patienceLevel(3)
                 .effortLevel(2).teamworkLevel(2).build();
 
-        Child child15 = Child.builder().name("Javier Alonso").age(11).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
+        Child child15 = Child.builder().name("Javier Alonso").age(1).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
                 .kindnessLevel(5).respectfulnessLevel(4).patienceLevel(4)
                 .effortLevel(3).teamworkLevel(1).build();
 
-        Child child16 = Child.builder().name("Paula Muñoz").age(12).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
+        Child child16 = Child.builder().name("Paula Muñoz").age(1).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(1).respectfulnessLevel(1).patienceLevel(2)
                 .effortLevel(2).teamworkLevel(1).build();
 
