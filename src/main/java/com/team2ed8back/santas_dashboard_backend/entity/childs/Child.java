@@ -43,11 +43,11 @@ public class Child {
     @PrePersist
     public void setBehaviorLevel() {
         int sum = this.patienceLevel + this.respectfulnessLevel + this.effortLevel + this.kindnessLevel + this.teamworkLevel;
-        if(sum >= 33) {
+        if(sum >= 13) {
             this.behaviorLevel = BehaviorLevel.EXCELENTE;
             this.setSuitableForGift(true);
         }
-        else if(sum >= 18) {
+        else if(sum >= 8) {
             this.behaviorLevel = BehaviorLevel.REGULAR;
             this.setSuitableForGift(true);
         }
