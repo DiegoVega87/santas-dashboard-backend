@@ -63,8 +63,4 @@ public class ChildController {
         return ResponseEntity.ok(child.getLeft());
     }
 
-    @DeleteMapping
-    public void deleteAllChilds() {
-        childService.delete();
-    }
 }
