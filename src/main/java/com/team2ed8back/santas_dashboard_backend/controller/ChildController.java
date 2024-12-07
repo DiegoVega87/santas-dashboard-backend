@@ -64,7 +64,7 @@ public class ChildController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteAllChilds() {
+    public void deleteAllChilds() {
         childService.delete();
     }
 }
