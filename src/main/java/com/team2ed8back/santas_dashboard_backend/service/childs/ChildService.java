@@ -14,23 +14,29 @@ public class ChildService {
 
     private final ChildRepository childRepository;
 
-    public List<Child> findAll(){
-        return childRepository.findAll();
+    public List<ChildsResponseDto> findAll(){
+        return childRepository.findAll().stream()
+                .map(FormMapperToChild::childToChildResponseDto)
+                .toList();
     }
 
-    public List<Child> sortByAvailableToGift(){
-        return childRepository.findAllBySuitableForGiftTrue();
+    public List<?> sortByAvailableToGift(){
+        return childRepository.findAllBySuitableForGiftTrue().stream()
+                .map(FormMapperToChild::childToChildResponseDto)
+                .toList();
     }
 
-    public List<Child> sortByNotAvailableToGift(){
-        return childRepository.findAllBySuitableForGiftFalse();
+    public List<?> sortByNotAvailableToGift(){
+        return childRepository.findAllBySuitableForGiftFalse().stream()
+                .map(FormMapperToChild::childToChildResponseDto)
+                .toList();
     }
 
     public boolean listChildIsEmpty(){
         return childRepository.findAll().isEmpty();
     }
 
-    public Either<String, Child> updateBehaviorChild(FormUpdateBehavior formUpdateBehavior) {
+    public Either<String, ChildsResponseDto> updateBehaviorChild(FormUpdateBehavior formUpdateBehavior) {
         Child updateChild = childRepository.findById(formUpdateBehavior.idChild())
                 .orElse(null);
 
@@ -45,33 +51,33 @@ public class ChildService {
         }
 
         Child savedChild = childRepository.save(mappedChild.get());
-
-        return Either.right(savedChild);
+        ChildsResponseDto responseDto = FormMapperToChild.childToChildResponseDto(savedChild);
+        return Either.right(responseDto);
     }
 
-    public Either<String, Child> findChildById(Integer id){
+    public Either<String, ChildsResponseDto> findChildById(Integer id){
         Child child = childRepository.findById(id).orElse(null);
         if(child == null){
             return Either.left(new IllegalArgumentException("Child with id " + id + " not found").getMessage());
         }
         else{
-            return Either.right(child);
+            return Either.right(FormMapperToChild.childToChildResponseDto(child));
         }
     }
 
-    public Either<String, Child> saveChild(FormSaveChild formSaveChild){
+    public Either<String, ChildsResponseDto> saveChild(FormSaveChild formSaveChild){
         Either<String, Child> child = FormMapperToChild.FormSaveChildToChild(formSaveChild);
         if(child.isLeft()){
             return Either.left(child.getLeft());
         }
-        childRepository.save(child.get());
-        return Either.right(child.get());
+        Child save = childRepository.save(child.get());
+        return Either.right(FormMapperToChild.childToChildResponseDto(save));
     }
 
     public void saveChildList() {
         Child child1 = Child.builder().name("Juan Camilo").age(12).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
-                .kindnessLevel(10).respectfulnessLevel(7).patienceLevel(7)
-                .effortLevel(10).teamworkLevel(10).build();
+                .kindnessLevel(1).respectfulnessLevel(4).patienceLevel(3)
+                .effortLevel(4).teamworkLevel(1).build();
 
         Child child2 = Child.builder().name("Ana Teres").age(10).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(4).patienceLevel(3)
@@ -86,8 +92,8 @@ public class ChildService {
                 .effortLevel(3).teamworkLevel(4).build();
 
         Child child5 = Child.builder().name("Luis Angel").age(11).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
-                .kindnessLevel(4).respectfulnessLevel(4).patienceLevel(3)
-                .effortLevel(5).teamworkLevel(4).build();
+                .kindnessLevel(4).respectfulnessLevel(0).patienceLevel(3)
+                .effortLevel(0).teamworkLevel(4).build();
 
         Child child6 = Child.builder().name("Sofía Dolores").age(7).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(5).respectfulnessLevel(5).patienceLevel(4)
@@ -95,7 +101,7 @@ public class ChildService {
 
         Child child7 = Child.builder().name("Pedro Placencia").age(6).isFemale(false).linkImgProfile(generateLinkImgProfile("adultMan"))
                 .kindnessLevel(2).respectfulnessLevel(2).patienceLevel(2)
-                .effortLevel(2).teamworkLevel(3).build();
+                .effortLevel(0).teamworkLevel(0).build();
 
         Child child8 = Child.builder().name("Isabella Jose").age(13).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(5).respectfulnessLevel(5).patienceLevel(5)
@@ -106,20 +112,20 @@ public class ChildService {
                 .effortLevel(3).teamworkLevel(2).build();
 
         Child child10 = Child.builder().name("Lucía Martinez").age(9).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
-                .kindnessLevel(4).respectfulnessLevel(4).patienceLevel(3)
-                .effortLevel(4).teamworkLevel(4).build();
+                .kindnessLevel(1).respectfulnessLevel(4).patienceLevel(3)
+                .effortLevel(1).teamworkLevel(4).build();
 
         Child child11 = Child.builder().name("Marta Angel").age(10).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(4).patienceLevel(2)
-                .effortLevel(4).teamworkLevel(3).build();
+                .effortLevel(4).teamworkLevel(1).build();
 
         Child child12 = Child.builder().name("Carmen Josefa").age(8).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(3).patienceLevel(3)
                 .effortLevel(3).teamworkLevel(4).build();
 
         Child child13 = Child.builder().name("Fernando Ruiz").age(7).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
-                .kindnessLevel(4).respectfulnessLevel(4).patienceLevel(4)
-                .effortLevel(5).teamworkLevel(4).build();
+                .kindnessLevel(4).respectfulnessLevel(1).patienceLevel(4)
+                .effortLevel(1).teamworkLevel(1).build();
 
         Child child14 = Child.builder().name("Valeria Romero").age(6).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(2).respectfulnessLevel(2).patienceLevel(3)
@@ -127,19 +133,17 @@ public class ChildService {
 
         Child child15 = Child.builder().name("Javier Alonso").age(11).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
                 .kindnessLevel(5).respectfulnessLevel(4).patienceLevel(4)
-                .effortLevel(3).teamworkLevel(4).build();
+                .effortLevel(3).teamworkLevel(1).build();
 
         Child child16 = Child.builder().name("Paula Muñoz").age(12).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
-                .kindnessLevel(3).respectfulnessLevel(3).patienceLevel(2)
-                .effortLevel(3).teamworkLevel(3).build();
+                .kindnessLevel(1).respectfulnessLevel(1).patienceLevel(2)
+                .effortLevel(2).teamworkLevel(1).build();
 
         List<Child> children = List.of(child1,child2,child3,
                 child4,child5,child6,child7,child8,child9,child10,
                 child11,child12,child13,child14,child15);
 
-        if(listChildIsEmpty()){
-            childRepository.saveAll(children);
-        }
+        childRepository.saveAll(children);
     }
 
     public static String generateLinkImgProfile(String type) {
