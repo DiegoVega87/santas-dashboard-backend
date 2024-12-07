@@ -5,5 +5,5 @@ import lombok.Builder;
 
 import java.util.List;
 @Builder
-public record ChildsResponseDto(String name, List<Behavior> characteristics, String classification) {
+public record ChildsResponseDto(int idChild, String name, List<Behavior> characteristics, String classification) {
 }

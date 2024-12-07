@@ -103,6 +103,7 @@ public class FormMapperToChild {
 
     public static ChildsResponseDto childToChildResponseDto(Child child){
         return ChildsResponseDto.builder()
+                .idChild(child.getId())
                 .name(child.getName())
                 .characteristics(childToBehaviorLevel(child))
                 .classification(String.valueOf(child.getBehaviorLevel()).replaceAll("_"," ").split(" ")[0].toLowerCase())
