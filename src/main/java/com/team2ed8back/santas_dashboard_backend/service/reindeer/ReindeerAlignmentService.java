@@ -102,6 +102,41 @@ public class ReindeerAlignmentService {
         return reindeerAlignmentRepository.findAll().isEmpty();
     }
 
+//    public void insertReinderToAlignment(ReindeerAlignment alignment, Reindeer reindeer, String position) {
+//        switch (position) {
+//            case "leader":
+//                alignment.setLeader(reindeer);
+//                break;
+//            case "front1":
+//                alignment.setFront1(reindeer);
+//                break;
+//            case "front2":
+//                alignment.setFront2(reindeer);
+//                break;
+//            case "middle1":
+//                alignment.setMiddle1(reindeer);
+//                break;
+//            case "middle2":
+//                alignment.setMiddle2(reindeer);
+//                break;
+//            case "middle3":
+//                alignment.setMiddle3(reindeer);
+//                break;
+//            case "back1":
+//                alignment.setBack1(reindeer);
+//                break;
+//            case "back2":
+//                alignment.setBack2(reindeer);
+//                break;
+//            case "back3":
+//                alignment.setBack3(reindeer);
+//                break;
+//            default:
+//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid position");
+//        }
+//        reindeerAlignmentRepository.save(alignment);
+//    }
+
     public void insertDefaultAlignments() {
         if (reindeerAlignmentIsEmpty()) {
             List<Reindeer> reindeers = reindeerService.findAllReindeers();
