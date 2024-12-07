@@ -5,12 +5,10 @@ import lombok.Builder;
 @Builder
 public record FormSaveChild(
         String name,
-        int age,
-        boolean isFemale,
-        int kindness,
-        int respectful,
-        int patience,
-        int effort,
-        int teamWork
+        int bondad,
+        int respeto,
+        int paciencia,
+        int esfuerzo,
+        int trabajoEnEquipo
 ) {
 }

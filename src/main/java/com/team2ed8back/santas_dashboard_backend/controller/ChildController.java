@@ -3,6 +3,7 @@ package com.team2ed8back.santas_dashboard_backend.controller;
 
 import com.team2ed8back.santas_dashboard_backend.entity.childs.Child;
 import com.team2ed8back.santas_dashboard_backend.service.childs.ChildService;
+import com.team2ed8back.santas_dashboard_backend.service.childs.ChildsResponseDto;
 import com.team2ed8back.santas_dashboard_backend.service.childs.FormSaveChild;
 import com.team2ed8back.santas_dashboard_backend.service.childs.FormUpdateBehavior;
 import io.vavr.control.Either;
@@ -36,7 +37,7 @@ public class ChildController {
 
     @PostMapping
     public ResponseEntity<?> saveChild(@RequestBody FormSaveChild formSaveChild) {
-        Either<String, Child> child = childService.saveChild(formSaveChild);
+        Either<String, ChildsResponseDto> child = childService.saveChild(formSaveChild);
         if(child.isRight()) {
             return ResponseEntity.ok().body(child.get());
         }
@@ -45,7 +46,7 @@ public class ChildController {
 
     @PutMapping
     public ResponseEntity<?> updateValues(@RequestBody FormUpdateBehavior formUpdateBehavior) {
-        Either<String, Child> resutl = childService.updateBehaviorChild(formUpdateBehavior);
+        Either<String, ChildsResponseDto> resutl = childService.updateBehaviorChild(formUpdateBehavior);
 
         if(resutl.isRight()) {
             return ResponseEntity.ok(resutl.get());
@@ -54,8 +55,8 @@ public class ChildController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<?> bad(@PathVariable Integer id) {
-        Either<String, Child> child = childService.findChildById(id);
+    public ResponseEntity<?> findById(@PathVariable Integer id) {
+        Either<String, ChildsResponseDto> child = childService.findChildById(id);
         if(child.isRight()) {
             return ResponseEntity.ok().body(child.get());
         }
