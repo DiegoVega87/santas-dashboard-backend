@@ -63,4 +63,8 @@ public class ChildController {
         return ResponseEntity.ok(child.getLeft());
     }
 
+    @DeleteMapping
+    public ResponseEntity<?> deleteAllChilds() {
+
+    }
 }

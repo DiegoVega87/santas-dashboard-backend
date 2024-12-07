@@ -16,6 +16,7 @@ public class SantasDashboardBackendApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SantasDashboardBackendApplication.class, args);
 		ChristmasLetterController christmasLetterController = context.getBean(ChristmasLetterController.class);
+		context.getBean(ChildService.class).delete();
 		context.getBean(ChildService.class).saveChildList();
 		christmasLetterController.insertChristmasLetters();
 		ReindeerAlignmentService reindeerAlignmentService = context.getBean(ReindeerAlignmentService.class);

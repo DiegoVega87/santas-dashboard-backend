@@ -143,6 +143,10 @@ public class ChildService {
         childRepository.saveAll(children);
     }
 
+    public void delete(){
+        childRepository.deleteAll();
+    }
+
     public static String generateLinkImgProfile(String type) {
         return switch (type){
             case "childBoy" -> "https://img.freepik.com/vector-gratis/chico-alegre-expresion-neutra-sombrero-navidad_1308-157364.jpg";
