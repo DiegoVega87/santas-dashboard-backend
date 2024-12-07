@@ -75,9 +75,6 @@ public class ChildService {
     }
 
     public void saveChildList() {
-        Child child1 = Child.builder().name("Juan Camilo").age(1).isFemale(false).linkImgProfile(generateLinkImgProfile("childBoy"))
-                .kindnessLevel(1).respectfulnessLevel(4).patienceLevel(3)
-                .effortLevel(4).teamworkLevel(1).build();
 
         Child child2 = Child.builder().name("Ana Teres").age(1).isFemale(true).linkImgProfile(generateLinkImgProfile("childFemale"))
                 .kindnessLevel(3).respectfulnessLevel(4).patienceLevel(3)
@@ -139,7 +136,7 @@ public class ChildService {
                 .kindnessLevel(1).respectfulnessLevel(1).patienceLevel(2)
                 .effortLevel(2).teamworkLevel(1).build();
 
-        List<Child> children = List.of(child1,child2,child3,
+        List<Child> children = List.of(child2,child3,
                 child4,child5,child6,child7,child8,child9,child10,
                 child11,child12,child13,child14,child15);
 
