@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -145,6 +146,16 @@ public class ChildService {
 
     public void delete(){
         childRepository.deleteAll();
+    }
+
+    public boolean deleteChildById(int id){
+        Optional<Child> child = childRepository.findById((int) id);
+        if(child.isPresent()){
+            childRepository.delete(child.get());
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public static String generateLinkImgProfile(String type) {

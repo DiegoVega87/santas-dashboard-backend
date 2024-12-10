@@ -5,6 +5,7 @@ import lombok.Builder;
 @Builder
 public record FormUpdateBehavior(
         Integer idChild,
+        String name,
         int bondad,
         int respeto,
         int paciencia,

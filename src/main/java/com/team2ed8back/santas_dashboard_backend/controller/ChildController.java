@@ -54,6 +54,12 @@ public class ChildController {
         return ResponseEntity.badRequest().body(resutl.getLeft());
     }
 
+    @DeleteMapping("/id/{idChild}")
+    public ResponseEntity<?> deleteChildById(@PathVariable int idChild) {
+        return childService.deleteChildById(idChild) ?
+                ResponseEntity.status(200).body("Child with id "+ idChild +" deleted is successfully") : ResponseEntity.status(404).body("Child with id "+ idChild +" not found");
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         Either<String, ChildsResponseDto> child = childService.findChildById(id);

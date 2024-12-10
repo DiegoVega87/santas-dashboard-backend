@@ -24,6 +24,7 @@ public class FormMapperToChild {
         if(formUpdateBehavior.trabajoEnEquipo() < 0 || formUpdateBehavior.trabajoEnEquipo() > 5){
             return Either.left("Value, team work is invalid, Valid values are integers between 0 and 5");
         }
+        childToUpdate.setName(formUpdateBehavior.name() != null ? formUpdateBehavior.name() : childToUpdate.getName());
         childToUpdate.setKindnessLevel(formUpdateBehavior.bondad());
         childToUpdate.setRespectfulnessLevel(formUpdateBehavior.respeto());
         childToUpdate.setPatienceLevel(formUpdateBehavior.paciencia());
