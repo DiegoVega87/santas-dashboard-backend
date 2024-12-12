@@ -10,7 +10,7 @@ import lombok.Data;
 @Table(name = "reindeer_alignment", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"left1", "right1", "left2",
                 "right2", "left3", "right3",
-                "left4", "right4", "back3"})
+                "left4", "right4"})
 })
 public class ReindeerAlignment {
     @Id
