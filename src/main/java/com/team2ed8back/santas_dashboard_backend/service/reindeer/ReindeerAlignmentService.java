@@ -125,10 +125,10 @@ public class ReindeerAlignmentService {
             snowyAlignment.setRight1(strongReindeers.get(0));
             snowyAlignment.setLeft2(strongReindeers.get(1));
             snowyAlignment.setRight2(strongReindeers.get(2));
-            snowyAlignment.setLeft3(strongReindeers.get(3));
             snowyAlignment.setRight3(fastReindeers.get(0));
             snowyAlignment.setLeft4(fastReindeers.get(1));
             snowyAlignment.setRight4(fastReindeers.get(2));
+            snowyAlignment.setLeft3(fastReindeers.get(3));
 
             reindeerAlignmentRepository.save(snowyAlignment);
 
@@ -145,10 +145,10 @@ public class ReindeerAlignmentService {
             defaultAlignment.setRight1(fastReindeers.get(1));
             defaultAlignment.setLeft2(fastReindeers.get(2));
             defaultAlignment.setRight2(fastReindeers.get(3));
-            defaultAlignment.setLeft3(strongReindeers.get(0));
-            defaultAlignment.setRight3(strongReindeers.get(1));
-            defaultAlignment.setLeft4(strongReindeers.get(2));
-            defaultAlignment.setRight4(strongReindeers.get(3));
+            defaultAlignment.setLeft3(rudolph);
+            defaultAlignment.setRight3(strongReindeers.get(0));
+            defaultAlignment.setLeft4(strongReindeers.get(1));
+            defaultAlignment.setRight4(strongReindeers.get(2));
 
             reindeerAlignmentRepository.save(defaultAlignment);
         }
