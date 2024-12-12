@@ -2,7 +2,6 @@ package com.team2ed8back.santas_dashboard_backend.entity.reindeer;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 @Table(name = "reindeer")
