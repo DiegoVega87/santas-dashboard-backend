@@ -31,12 +31,12 @@ public class SantasDashboardBackendApplication {
 				new Reindeer("Dasher", "Fast"),
 				new Reindeer("Dancer", "Fast"),
 				new Reindeer("Comet", "Fast"),
-				new Reindeer("Prancer", "Strong"),
+				new Reindeer("Prancer", "Fast"),
 				new Reindeer("Vixen", "Strong"),
 				new Reindeer("Cupid", "Strong"),
 				new Reindeer("Donner", "Strong"),
 				new Reindeer("Blitzen", "Strong"),
-				new Reindeer("Rudolph", "Leader")
+					new Reindeer("Rudolph", "Leader")
 		));
 	}
 }

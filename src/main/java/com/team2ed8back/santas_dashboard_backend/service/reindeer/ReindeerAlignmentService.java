@@ -1,5 +1,7 @@
 package com.team2ed8back.santas_dashboard_backend.service.reindeer;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team2ed8back.santas_dashboard_backend.entity.Weather;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeer.Reindeer;
 import com.team2ed8back.santas_dashboard_backend.entity.reindeerAlignment.ReindeerAlignment;
@@ -53,27 +55,33 @@ public class ReindeerAlignmentService {
         try {
             String weatherResponse = weatherService.getWeatherAtNorthPole();
             JSONObject weatherJson = new JSONObject(weatherResponse);
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode rootNode = objectMapper.readTree(weatherJson.toString());
+
+            // Navegar a "data" (es un array)
+            String temp = "";
+            JsonNode dataArray = rootNode.get("data");
+            if (dataArray != null && dataArray.isArray()) {
+                JsonNode firstItem = dataArray.get(0); //
+                if (firstItem != null) {
+                    JsonNode tempNode = firstItem.get("temp"); // Obtener el valor de "temp"
+                    if (tempNode != null) {
+                        temp = tempNode.asInt() + "°C";
+                    } else {
+                        System.out.println("No se encontró 'temp' en el objeto.");
+                    }
+                }
+            }
             String weatherCondition = weatherJson.getJSONArray("data")
                     .getJSONObject(0).getJSONObject("weather").getString("description");
-            double temperature = weatherJson.getJSONArray("data")
-                    .getJSONObject(0).getDouble("temp");
 
             System.out.println(weatherJson.toString(2)); // Pretty print the J
             Weather weather = new Weather();
             weather.setCondition(weatherCondition);
-
+            weather.setTemperature(temp);
             return weather;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to fetch weather condition", e);
-        }
-    }
-
-    public ReindeerAlignment getAlignmentByWeather() {
-        Weather weatherCondition = getWeatherCondition();
-        if (weatherCondition.getCondition().contains("snow")) {
-            return reindeerAlignmentRepository.findByName("Snowy alignment");
-        } else {
-            return reindeerAlignmentRepository.findByName("Default alignment");
         }
     }
 
@@ -82,13 +90,13 @@ public class ReindeerAlignmentService {
 
         // Snowy alignment
         ReindeerAlignment snowyAlignment = new ReindeerAlignment();
-        snowyAlignment.setName("Snowy alignment");
+        snowyAlignment.setName("Snowy/Foggy/Misty alignment");
 
         Reindeer rudolph = reindeers.stream()
                 .filter(r -> "Rudolph".equalsIgnoreCase(r.getName()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Rudolph not found"));
-        snowyAlignment.setLead(rudolph);
+        snowyAlignment.setLeft1(rudolph);
 
         List<Reindeer> strongReindeers = reindeers.stream()
                 .filter(r -> "Strongest".equalsIgnoreCase(r.getType()) || "Strong".equalsIgnoreCase(r.getType()))
@@ -97,14 +105,13 @@ public class ReindeerAlignmentService {
                 .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
                 .collect(Collectors.toList());
 
-        snowyAlignment.setFront1(strongReindeers.get(0));
-        snowyAlignment.setFront2(strongReindeers.get(1));
-        snowyAlignment.setMiddle1(strongReindeers.get(2));
-        snowyAlignment.setMiddle2(strongReindeers.get(3));
-        snowyAlignment.setMiddle3(strongReindeers.get(4));
-        snowyAlignment.setBack1(fastReindeers.get(0));
-        snowyAlignment.setBack2(fastReindeers.get(1));
-        snowyAlignment.setBack3(fastReindeers.get(2));
+        snowyAlignment.setRight1(strongReindeers.get(0));
+        snowyAlignment.setLeft2(strongReindeers.get(1));
+        snowyAlignment.setRight2(strongReindeers.get(2));
+        snowyAlignment.setLeft3(strongReindeers.get(3));
+        snowyAlignment.setRight3(fastReindeers.get(0));
+        snowyAlignment.setLeft4(fastReindeers.get(1));
+        snowyAlignment.setRigth4(fastReindeers.get(2));
 
         reindeerAlignmentRepository.save(snowyAlignment);
 
@@ -116,16 +123,15 @@ public class ReindeerAlignmentService {
                 .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Fastest reindeer not found"));
-        defaultAlignment.setLead(fastest);
+        defaultAlignment.setLeft1(fastest);
 
-        defaultAlignment.setFront1(rudolph);
-        defaultAlignment.setFront2(fastReindeers.get(1));
-        defaultAlignment.setMiddle1(fastReindeers.get(2));
-        defaultAlignment.setMiddle2(strongReindeers.get(0));
-        defaultAlignment.setMiddle3(strongReindeers.get(1));
-        defaultAlignment.setBack1(strongReindeers.get(2));
-        defaultAlignment.setBack2(strongReindeers.get(3));
-        defaultAlignment.setBack3(strongReindeers.get(4));
+        defaultAlignment.setRight1(fastReindeers.get(1));
+        defaultAlignment.setLeft2(fastReindeers.get(2));
+        defaultAlignment.setRight2(fastReindeers.get(3));
+        defaultAlignment.setLeft3(strongReindeers.get(0));
+        defaultAlignment.setRight3(strongReindeers.get(1));
+        defaultAlignment.setLeft4(strongReindeers.get(2));
+        defaultAlignment.setRigth4(strongReindeers.get(3));
 
         reindeerAlignmentRepository.save(defaultAlignment);
     }
