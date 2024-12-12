@@ -7,51 +7,51 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "reindeer_alignment", uniqueConstraints = @UniqueConstraint(columnNames = {"name","leader", "front1", "front2",
-        "middle1", "middle2", "middle3", "back1", "back2", "back3"}))
+@Table(name = "reindeer_alignment", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"left1", "right1", "left2",
+                "right2", "left3", "right3",
+                "left4", "right4"})
+})
 public class ReindeerAlignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @NotBlank(message = "Name is mandatory")
     private String name;
 
     //------------> For Rudolph in case weather = snow. <----------
     @ManyToOne
-    @JoinColumn(name = "leader", referencedColumnName = "id")
-    private Reindeer leader;
+    @JoinColumn(name = "left1", referencedColumnName = "id")
+    private Reindeer left1;
     //------------> For Rudolph in case weather = snow. <----------
 
     @ManyToOne
-    @JoinColumn(name = "front1", referencedColumnName = "id")
-    private Reindeer front1;
+    @JoinColumn(name = "right1", referencedColumnName = "id")
+    private Reindeer right1;
 
     @ManyToOne
-    @JoinColumn(name = "front2", referencedColumnName = "id")
-    private Reindeer front2;
+    @JoinColumn(name = "left2", referencedColumnName = "id")
+    private Reindeer left2;
 
     @ManyToOne
-    @JoinColumn(name = "middle1", referencedColumnName = "id")
-    private Reindeer middle1;
+    @JoinColumn(name = "right2", referencedColumnName = "id")
+    private Reindeer right2;
 
     @ManyToOne
-    @JoinColumn(name = "middle2", referencedColumnName = "id")
-    private Reindeer middle2;
+    @JoinColumn(name = "left3", referencedColumnName = "id")
+    private Reindeer left3;
 
     @ManyToOne
-    @JoinColumn(name = "middle3", referencedColumnName = "id")
-    private Reindeer middle3;
+    @JoinColumn(name = "right3", referencedColumnName = "id")
+    private Reindeer right3;
 
     @ManyToOne
-    @JoinColumn(name = "back1", referencedColumnName = "id")
-    private Reindeer back1;
+    @JoinColumn(name = " left4", referencedColumnName = "id")
+    private Reindeer left4;
 
     @ManyToOne
-    @JoinColumn(name = "back2", referencedColumnName = "id")
-    private Reindeer back2;
+    @JoinColumn(name = "right4", referencedColumnName = "id")
+    private Reindeer right4;
 
-    @ManyToOne
-    @JoinColumn(name = "back3", referencedColumnName = "id")
-    private Reindeer back3;
+
 }
