@@ -85,54 +85,72 @@ public class ReindeerAlignmentService {
         }
     }
 
+    public boolean reindeerAlignmentIsEmpty() {
+        return reindeerAlignmentRepository.findAll().isEmpty();
+    }
+
+    public ReindeerAlignment getAlignmentByWeather() {
+        Weather weatherCondition = getWeatherCondition();
+        if (weatherCondition.getCondition().toLowerCase().contains("snow") ||
+        weatherCondition.getCondition().toLowerCase().contains("fog")||
+        weatherCondition.getCondition().toLowerCase().contains("mist")) {
+            return reindeerAlignmentRepository.findByName("Snowy/Foggy/Misty alignment");
+        } else {
+            return reindeerAlignmentRepository.findByName("Default alignment");
+        }
+
+    }
+
     public void insertDefaultAlignments() {
-        List<Reindeer> reindeers = reindeerService.findAllReindeers();
+        if (reindeerAlignmentIsEmpty()) {
+            List<Reindeer> reindeers = reindeerService.findAllReindeers();
 
-        // Snowy alignment
-        ReindeerAlignment snowyAlignment = new ReindeerAlignment();
-        snowyAlignment.setName("Snowy/Foggy/Misty alignment");
+            // Snowy alignment
+            ReindeerAlignment snowyAlignment = new ReindeerAlignment();
+            snowyAlignment.setName("Snowy/Foggy/Misty alignment");
 
-        Reindeer rudolph = reindeers.stream()
-                .filter(r -> "Rudolph".equalsIgnoreCase(r.getName()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Rudolph not found"));
-        snowyAlignment.setLeft1(rudolph);
+            Reindeer rudolph = reindeers.stream()
+                    .filter(r -> "Rudolph".equalsIgnoreCase(r.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Rudolph not found"));
+            snowyAlignment.setLeft1(rudolph);
 
-        List<Reindeer> strongReindeers = reindeers.stream()
-                .filter(r -> "Strongest".equalsIgnoreCase(r.getType()) || "Strong".equalsIgnoreCase(r.getType()))
-                .collect(Collectors.toList());
-        List<Reindeer> fastReindeers = reindeers.stream()
-                .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
-                .collect(Collectors.toList());
+            List<Reindeer> strongReindeers = reindeers.stream()
+                    .filter(r -> "Strongest".equalsIgnoreCase(r.getType()) || "Strong".equalsIgnoreCase(r.getType()))
+                    .collect(Collectors.toList());
+            List<Reindeer> fastReindeers = reindeers.stream()
+                    .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
+                    .collect(Collectors.toList());
 
-        snowyAlignment.setRight1(strongReindeers.get(0));
-        snowyAlignment.setLeft2(strongReindeers.get(1));
-        snowyAlignment.setRight2(strongReindeers.get(2));
-        snowyAlignment.setLeft3(strongReindeers.get(3));
-        snowyAlignment.setRight3(fastReindeers.get(0));
-        snowyAlignment.setLeft4(fastReindeers.get(1));
-        snowyAlignment.setRight4(fastReindeers.get(2));
+            snowyAlignment.setRight1(strongReindeers.get(0));
+            snowyAlignment.setLeft2(strongReindeers.get(1));
+            snowyAlignment.setRight2(strongReindeers.get(2));
+            snowyAlignment.setLeft3(strongReindeers.get(3));
+            snowyAlignment.setRight3(fastReindeers.get(0));
+            snowyAlignment.setLeft4(fastReindeers.get(1));
+            snowyAlignment.setRight4(fastReindeers.get(2));
 
-        reindeerAlignmentRepository.save(snowyAlignment);
+            reindeerAlignmentRepository.save(snowyAlignment);
 
-        // Default alignment
-        ReindeerAlignment defaultAlignment = new ReindeerAlignment();
-        defaultAlignment.setName("Default alignment");
+            // Default alignment
+            ReindeerAlignment defaultAlignment = new ReindeerAlignment();
+            defaultAlignment.setName("Default alignment");
 
-        Reindeer fastest = reindeers.stream()
-                .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Fastest reindeer not found"));
-        defaultAlignment.setLeft1(fastest);
+            Reindeer fastest = reindeers.stream()
+                    .filter(r -> "Fastest".equalsIgnoreCase(r.getType()) || "Fast".equalsIgnoreCase(r.getType()))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Fastest reindeer not found"));
+            defaultAlignment.setLeft1(fastest);
 
-        defaultAlignment.setRight1(fastReindeers.get(1));
-        defaultAlignment.setLeft2(fastReindeers.get(2));
-        defaultAlignment.setRight2(fastReindeers.get(3));
-        defaultAlignment.setLeft3(strongReindeers.get(0));
-        defaultAlignment.setRight3(strongReindeers.get(1));
-        defaultAlignment.setLeft4(strongReindeers.get(2));
-        defaultAlignment.setRight4(strongReindeers.get(3));
+            defaultAlignment.setRight1(fastReindeers.get(1));
+            defaultAlignment.setLeft2(fastReindeers.get(2));
+            defaultAlignment.setRight2(fastReindeers.get(3));
+            defaultAlignment.setLeft3(strongReindeers.get(0));
+            defaultAlignment.setRight3(strongReindeers.get(1));
+            defaultAlignment.setLeft4(strongReindeers.get(2));
+            defaultAlignment.setRight4(strongReindeers.get(3));
 
-        reindeerAlignmentRepository.save(defaultAlignment);
+            reindeerAlignmentRepository.save(defaultAlignment);
+        }
     }
 }
