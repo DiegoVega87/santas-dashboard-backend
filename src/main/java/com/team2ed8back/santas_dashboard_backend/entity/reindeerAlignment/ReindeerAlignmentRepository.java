@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ReindeerAlignmentRepository extends JpaRepository<ReindeerAlignment, Long> {
 
     ReindeerAlignment findByName(String snowyAlignment);
+
+    ReindeerAlignment saveByAlignment(ReindeerAlignment existingAlignment, ReindeerAlignment alignment);
+
 }

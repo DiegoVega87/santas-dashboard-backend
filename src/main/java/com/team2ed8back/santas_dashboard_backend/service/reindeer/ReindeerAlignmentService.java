@@ -44,7 +44,7 @@ public class ReindeerAlignmentService {
     public ReindeerAlignment updateAlignment(Long id, ReindeerAlignment alignment) {
         ReindeerAlignment existingAlignment = getAlignmentById(id);
         // Update fields of existingAlignment with values from alignment
-        return reindeerAlignmentRepository.save(existingAlignment);
+        return reindeerAlignmentRepository.saveByAlignment(existingAlignment, alignment);
     }
 
     public void deleteAlignment(Long id) {
