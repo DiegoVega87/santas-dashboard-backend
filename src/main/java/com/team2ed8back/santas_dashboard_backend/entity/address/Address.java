@@ -2,9 +2,7 @@ package com.team2ed8back.santas_dashboard_backend.entity.address;
 
 
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin("*")
 @Entity
 @Table(name = "address")
 public class Address {

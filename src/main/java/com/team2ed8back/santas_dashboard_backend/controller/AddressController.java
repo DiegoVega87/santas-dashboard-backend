@@ -10,12 +10,12 @@ import java.util.List;
 @CrossOrigin(origins = "*") // This means that the controller will accept requests from any origin
 @RestController
 @RequestMapping(path = "api/v1/addresses")
-public class AddresController {
+public class AddressController {
 
     @Autowired
     private final AddressService addressService;
 
-    public AddresController(AddressService addressService) {
+    public AddressController(AddressService addressService) {
         this.addressService = addressService;
     }
 
