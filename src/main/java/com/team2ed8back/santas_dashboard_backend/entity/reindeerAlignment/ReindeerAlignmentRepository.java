@@ -6,5 +6,4 @@ public interface ReindeerAlignmentRepository extends JpaRepository<ReindeerAlign
 
     ReindeerAlignment findByName(String snowyAlignment);
 
-    ReindeerAlignment save(ReindeerAlignment existingAlignment, ReindeerAlignment alignment);
 }

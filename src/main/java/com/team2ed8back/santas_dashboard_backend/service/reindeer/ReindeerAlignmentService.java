@@ -44,7 +44,16 @@ public class ReindeerAlignmentService {
     public ReindeerAlignment updateAlignment(Long id, ReindeerAlignment alignment) {
         ReindeerAlignment existingAlignment = getAlignmentById(id);
         // Update fields of existingAlignment with values from alignment
-        return reindeerAlignmentRepository.save(existingAlignment, alignment);
+        existingAlignment.setName(alignment.getName());
+        existingAlignment.setLeft1(alignment.getLeft1());
+        existingAlignment.setRight1(alignment.getRight1());
+        existingAlignment.setLeft2(alignment.getLeft2());
+        existingAlignment.setRight2(alignment.getRight2());
+        existingAlignment.setLeft3(alignment.getLeft3());
+        existingAlignment.setRight3(alignment.getRight3());
+        existingAlignment.setLeft4(alignment.getLeft4());
+        existingAlignment.setRight4(alignment.getRight4());
+        return reindeerAlignmentRepository.save(existingAlignment);
     }
 
     public void deleteAlignment(Long id) {
