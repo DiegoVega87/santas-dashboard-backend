@@ -54,6 +54,7 @@ public class ReindeerAlignmentService {
         existingAlignment.setLeft4(alignment.getLeft4());
         existingAlignment.setRight4(alignment.getRight4());
         return reindeerAlignmentRepository.save(existingAlignment);
+
     }
 
     public void deleteAlignment(Long id) {
